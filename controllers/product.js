@@ -2,7 +2,19 @@ function createProduct(req, res) {
     let Product = require('../models/product');
     let newProduct = Product ({
         title: req.body.title,
-        description : req.body.description
+        description : req.body.description,
+        price : req.body.price,
+        productWidth : req.body.productWidth,
+        productDepth : req.body.productDepth,
+        productHeight : req.body.productHeight,
+        releaseDate : req.body.releaseDate,
+        available : req.body.available,
+        createdAt : req.body.createdAt,
+        createdBy : req.body.createdBy,
+        updatedAt : req.body.updatedAt,
+        updatedBy : req.body.updatedBy,
+        deletedAt : req.body.deletedAt,
+        deletedBy : req.body.deletedBy
     });
   
     newProduct.save()

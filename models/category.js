@@ -29,22 +29,22 @@ var CategorySchema = new Schema({
     default : false
   },
 
-  updateAt : {
+  updatedAt : {
     type : Date,
     default : false
   },
 
-  updateBy : {
+  updatedBy : {
     type : String,
     default : false
   },
 
-  deleteAt : {
+  deletedAt : {
     type : Date,
     default : false
   },
 
-  deleteBy : {
+  deletedBy : {
     type : String,
     default : false
   },

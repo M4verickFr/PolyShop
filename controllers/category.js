@@ -2,7 +2,14 @@ function createCategory(req, res) {
     let Category = require('../models/category');
     let newCategory = Category ({
         title: req.body.title,
-        description : req.body.description
+        description : req.body.description,
+        available : req.body.available,
+        createdAt : req.body.createdAt,
+        createdBy : req.body.createdBy,
+        updatedAt : req.body.updatedAt,
+        updatedBy : req.body.updatedBy,
+        deletedAt : req.body.deletedAt,
+        deletedBy : req.body.deletedBy
     });
   
     newCategory.save()
