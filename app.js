@@ -78,12 +78,14 @@ const connectDb = async () => {
 
   
 //Accessing the routes for the user
-const todoRoutes = require('./routes/todo');
 const shopRoutes = require('./routes/shop');
+const categoryRoutes = require('./routes/category');
+const productRoutes = require('./routes/product');
 
 //Acces the routes 
-app.use('/api/v1/', todoRoutes);
-app.use('/api/v2/', shopRoutes);
+app.use('/api/v1/', shopRoutes);
+app.use('/api/v1/', categoryRoutes);
+app.use('/api/v1/', productRoutes);
 
 //When there is no route that caught the incoming request
 //use the 404 middleware
