@@ -1,15 +1,23 @@
-function createTodo(req, res) {
-    let Todo = require('../models/todo');
-    let newTodo = Todo ({
+function createShop(req, res) {
+    let Shop = require('../models/shop');
+    let newShop = Todo ({
         title: req.body.title,
-        description : req.body.description
+        description : req.body.description,
+        description : req.body.description,
+        price : req.body.price,
+        url : req.body.url,
+        createdAt : req.body.createdAt,
+        createdBy : req.body.createdBy,
+        updatedAt : req.body.updatedAt,
+        updatedBy : req.body.updatedBy,
+        deletedAt : req.body.deletedAt,
+        deletedBy : req.body.deletedBy
     });
   
-    newTodo.save()
-    .then((savedTodo) => {
+    newShop.save()
+    .then((savedShop) => {
 
-        //send back the created Todo
-        res.json(savedTodo);
+        res.json(savedShop);
             
     }, (err) => {
         res.status(400).json(err)
@@ -17,91 +25,4 @@ function createTodo(req, res) {
 
 }
 
-function readTodos(req, res) {
-
-    let Todo = require("../models/todo");
-
-    Todo.find({})
-    .then((todos) => {
-        res.status(200).json(todos);
-    }, (err) => {
-        res.status(500).json(err);
-    });
- }
-
-function readTodo(req, res) {
-
-    let Todo = require("../models/todo");
-
-    Todo.findById({_id : req.params.id})
-    .then((todo) => {
-        res.status(200).json(todo);
-    }, (err) => {
-        res.status(500).json(err);
-    });
- }
-
-function updateTodo(req, res) {
-
-    let Todo = require("../models/todo");
-
-    Todo.findByIdAndUpdate({_id: req.params.id}, 
-        {title : req.body.title, 
-        description : req.body.description}, 
-        {new : true})
-    .then((updatedTodo) => {
-        res.status(200).json(updatedTodo);
-    }, (err) => {
-        res.status(500).json(err);
-    });
-}
-
-function deleteTodo(req, res) {
-
-    let Todo = require("../models/todo");
-
-    Todo.findOneAndRemove({_id : req.params.id})
-    .then((deletedTodo) => {
-        res.status(200).json(deletedTodo);
-    }, (err) => {
-        res.status(500).json(err);
-    });
- }
-
-function done(req, res) {
-
-    let Todo = require("../models/todo");
-
-    Todo.findByIdAndUpdate({_id: req.params.id}, 
-        {done : true}, 
-        {new : true})
-    .then((updatedTodo) => {
-        res.status(200).json(updatedTodo);
-    }, (err) => {
-        res.status(500).json(err);
-    });
-
-}
-
-function undone(req, res) {
-
-    let Todo = require("../models/todo");
-
-    Todo.findByIdAndUpdate({_id: req.params.id}, 
-        {done : false}, 
-        {new : true})
-    .then((updatedTodo) => {
-        res.status(200).json(updatedTodo);
-    }, (err) => {
-        res.status(500).json(err);
-    });
-
-}
-
-module.exports.create = createTodo;
-module.exports.reads = readTodos;
-module.exports.read = readTodo;
-module.exports.delete = deleteTodo;
-module.exports.update = updateTodo;
-module.exports.done = done;
-module.exports.undone = undone;
+module.exports.create = createShop;
