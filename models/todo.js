@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
+var mongoose = require('mongoose');
 
-const Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 
-const TodoSchema = new Schema({
+var TodoSchema = new Schema({
   title : String,
   description : String,
   done : {
@@ -12,7 +12,7 @@ const TodoSchema = new Schema({
   createdAt : {
     type : Date,
     default : Date.now
-  }
+  },
 });
 
 module.exports = mongoose.model('Todo', TodoSchema);
