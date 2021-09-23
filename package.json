@@ -1,8 +1,8 @@
 {
-  "name": "todo",
+  "name": "PolyShop",
   "version": "1.0.0",
-  "description": "Node.js backend for Todo",
-  "main": "server.js",
+  "description": "Node.js backend for PolyShop",
+  "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js"
@@ -11,9 +11,9 @@
     "Node.js",
     "Express",
     "MongoDB",
-    "Todo"
+    "Shop"
   ],
-  "author": "Marc-Philippe Huget",
+  "author": "Maverick Perrollaz && Dorian Caullireau",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.19.0",
