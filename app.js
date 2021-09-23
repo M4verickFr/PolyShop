@@ -83,7 +83,7 @@ const categoryRoutes = require('./routes/category');
 const productRoutes = require('./routes/product');
 
 //Acces the routes 
-app.use('/api/v1/', shopRoutes);
+app.use(shopRoutes);
 app.use('/api/v1/', categoryRoutes);
 app.use('/api/v1/', productRoutes);
 
