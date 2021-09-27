@@ -23,14 +23,14 @@ router.get("/product/:id", (req, res) => {
 });
 
 //UPDATE
-router.put("/product/:id", (req, res) => {
+router.put("/product/update/:id", (req, res) => {
     
     controller.update(req, res);
 
 });
 
 //DELETE
-router.delete("/product/:id", (req, res) => {
+router.delete("/product/delete/:id", (req, res) => {
     
     controller.delete(req, res);
 

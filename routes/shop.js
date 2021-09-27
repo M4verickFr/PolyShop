@@ -12,14 +12,14 @@ router.post("/shop/create", (req, res) => {
 });
 
 //UPDATE
-router.put("/shop/:id", (req, res) => {
+router.put("/shop/update/:id", (req, res) => {
     
     controller.update(req, res);
 
 });
 
 //DELETE
-router.delete("/shop/:id", (req, res) => {
+router.delete("/shop/delete/:id", (req, res) => {
     
     controller.delete(req, res);
 

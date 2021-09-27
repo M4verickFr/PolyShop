@@ -43,7 +43,45 @@ function readShop(req, res) {
     });
  }
 
+ function updateShop(req, res) {
+
+    let Shop = require("../models/shop");
+
+    Shop.findByIdAndUpdate({_id: req.params.id}, 
+        {
+            title: req.body.title,
+            description : req.body.description,
+            url : req.body.url,
+            updatedAt : Date.now
+        }, 
+        {
+            new : true
+        }
+    ).then((updateShop) => {
+        res.status(200).json(updateShop);
+    }, (err) => {
+        res.status(500).json(err);
+    });
+}
+
+function deleteShop(req, res) {
+
+    let Shop = require("../models/shop");
+
+    Shop.findOneAndRemove(
+        {
+            _id : req.params.id
+        }
+    ).then((deleteShop) => {
+        res.status(200).json(deleteShop);
+    }, (err) => {
+        res.status(500).json(err);
+    });
+ }
+
 
 module.exports.create = createShop;
 module.exports.reads = readShops;
 module.exports.read = readShop;
+module.exports.delete = deleteShop;
+module.exports.update = updateShop;

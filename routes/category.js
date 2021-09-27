@@ -5,7 +5,7 @@ const router = require('express').Router();
 const controller = require('../controllers/category');
 
 //CREATE
-router.post("/category", (req, res) => {
+router.post("/category/create", (req, res) => {
 
     controller.create(req, res);
 
@@ -25,14 +25,14 @@ router.get("/category/:id", (req, res) => {
 });
 
 //UPDATE
-router.put("/category/:id", (req, res) => {
+router.put("/category/update/:id", (req, res) => {
     
     controller.update(req, res);
 
 });
 
 //DELETE
-router.delete("/category/:id", (req, res) => {
+router.delete("/category/delete/:id", (req, res) => {
     
     controller.delete(req, res);
 
