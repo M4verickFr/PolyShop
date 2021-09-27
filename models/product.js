@@ -15,11 +15,6 @@ var ProductSchema = new Schema({
   },
 
   price : {
-    type : Float,
-    default : 0.0
-  },
-
-  price : {
     type : int,
     default : 0
   },
@@ -46,7 +41,7 @@ var ProductSchema = new Schema({
 
   releaseDate : {
     type : Date,
-    default : false
+    default : null
   },
 
   createdAt : {
@@ -56,27 +51,27 @@ var ProductSchema = new Schema({
 
   createdBy : {
     type : String,
-    default : false
+    default : null
   },
 
   updatedAt : {
     type : Date,
-    default : false
+    default : null
   },
 
   updatedBy : {
     type : String,
-    default : false
+    default : null
   },
 
   deletedAt : {
     type : Date,
-    default : false
+    default : null
   },
 
   deletedBy : {
     type : String,
-    default : false
+    default : null
   },
 
 });

@@ -14,14 +14,14 @@ var ShopSchema = new Schema({
     default : "ShopDescription"
   },
 
-  price :  {
-      type : Float,
-      default : 0
+  photo : {
+    type : String,
+    default : null
   },
 
   url : {
     type : String,
-    default : false
+    default : null
   },
 
   createdAt : {
@@ -31,27 +31,27 @@ var ShopSchema = new Schema({
 
   createdBy : {
     type : String,
-    default : false
+    default : null
   },
 
   updatedAt : {
     type : Date,
-    default : false
+    default : null
   },
 
   updatedBy : {
     type : String,
-    default : false
+    default : null
   },
 
   deletedAt : {
     type : Date,
-    default : false
+    default : null
   },
 
   deletedBy : {
     type : String,
-    default : false
+    default : null
   },
 
 });
