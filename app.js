@@ -8,8 +8,6 @@ const chalk = require('chalk');
 //to access form data
 let bodyParser = require('body-parser');
 
-require('dotenv').load();
-
 //The 404 middleware used when an incoming request
 //hits a wrong route
 const http404 = require('./middleware/route404');
@@ -64,7 +62,7 @@ const infoLogger = loggers.get('infoLogger');
 
 //Connecting to MongoDB (async/await approach)
 const connectDb = async () => {
-    await mongoose.connect(process.env.DATABASE, {useNewUrlParser: true, useUnifiedTopology : true}).then(
+    await mongoose.connect('mongodb://localhost:27017/shop', {useNewUrlParser: true, useUnifiedTopology : true}).then(
         () => {
             console.log(chalk.green(`Connected to database`))
             infoLogger.info("Connected to database");
@@ -93,14 +91,12 @@ app.use('/api/v1/', productRoutes);
 //use the 404 middleware
 app.use(http404.notFound);
 
-const PORT = process.env.PORT || 3000;
-
 //Listen on the port 3000
-app.listen(PORT, () => {
+app.listen(3000, () => {
     //Add info to the loggers
-    infoLogger.info('Server is running on port: ' + PORT);
+    infoLogger.info('Server is running on port: ' + 3000);
 
 });
 
 //Print out where the server is
-console.log(chalk.green('Server is running on port: ' + PORT));
+console.log(chalk.green('Server is running on port: ' + 3000));
