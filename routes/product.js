@@ -2,13 +2,11 @@
 const router = require('express').Router();
 
 //Access the controllers
-const controller = require('../controllers/shop');
+const controller = require('../controllers/product');
 
 //CREATE
-router.post("/product", (req, res) => {
-
+router.post("/product/create", (req, res) => {
     controller.create(req, res);
-
 });
 
 //READ

@@ -15,22 +15,22 @@ var ProductSchema = new Schema({
   },
 
   price : {
-    type : int,
-    default : 0
+    type : Number,
+    default : 0.0
   },
 
   productWidth : {
-    type : Float,
+    type : Number,
     default : 0.0
   },
 
   productDepth : {
-    type : Float,
+    type : Number,
     default : 0.0
   },
 
   productHeight : {
-    type : Float,
+    type : Number,
     default : 0.0
   },
 

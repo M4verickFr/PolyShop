@@ -9,7 +9,6 @@ function createProduct(req, res) {
         productHeight : req.body.productHeight,
         releaseDate : req.body.releaseDate,
         available : req.body.available,
-        createdAt : req.body.createdAt,
         createdBy : req.body.createdBy,
     });
   
