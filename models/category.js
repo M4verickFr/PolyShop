@@ -26,27 +26,27 @@ var CategorySchema = new Schema({
 
   createdBy : {
     type : String,
-    default : false
+    default : null
   },
 
   updatedAt : {
     type : Date,
-    default : false
+    default : null
   },
 
   updatedBy : {
     type : String,
-    default : false
+    default : null
   },
 
   deletedAt : {
     type : Date,
-    default : false
+    default : null
   },
 
   deletedBy : {
     type : String,
-    default : false
+    default : null
   },
 });
 
