@@ -1,17 +1,10 @@
 function createShop(req, res) {
     let Shop = require('../models/shop');
-    let newShop = Todo ({
+    let newShop = Shop ({
         title: req.body.title,
         description : req.body.description,
-        description : req.body.description,
-        price : req.body.price,
         url : req.body.url,
-        createdAt : req.body.createdAt,
         createdBy : req.body.createdBy,
-        updatedAt : req.body.updatedAt,
-        updatedBy : req.body.updatedBy,
-        deletedAt : req.body.deletedAt,
-        deletedBy : req.body.deletedBy
     });
   
     newShop.save()
@@ -25,4 +18,32 @@ function createShop(req, res) {
 
 }
 
+
+function readShops(req, res) {
+
+    let Shop = require("../models/shop");
+
+    Shop.find({})
+    .then((shops) => {
+        res.status(200).json(shops);
+    }, (err) => {
+        res.status(500).json(err);
+    });
+ }
+
+function readShop(req, res) {
+
+    let Shop = require("../models/shop");
+
+    Shop.findById({_id : req.params.id})
+    .then((shop) => {
+        res.status(200).json(shop);
+    }, (err) => {
+        res.status(500).json(err);
+    });
+ }
+
+
 module.exports.create = createShop;
+module.exports.reads = readShops;
+module.exports.read = readShop;

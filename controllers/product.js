@@ -11,10 +11,6 @@ function createProduct(req, res) {
         available : req.body.available,
         createdAt : req.body.createdAt,
         createdBy : req.body.createdBy,
-        updatedAt : req.body.updatedAt,
-        updatedBy : req.body.updatedBy,
-        deletedAt : req.body.deletedAt,
-        deletedBy : req.body.deletedBy
     });
   
     newProduct.save()
@@ -58,8 +54,18 @@ function updateProduct(req, res) {
     let Product = require("../models/product");
 
     Product.findByIdAndUpdate({_id: req.params.id}, 
-        {title : req.body.title, 
-        description : req.body.description}, 
+        {
+            title: req.body.title,
+            description : req.body.description,
+            price : req.body.price,
+            productWidth : req.body.productWidth,
+            productDepth : req.body.productDepth,
+            productHeight : req.body.productHeight,
+            releaseDate : req.body.releaseDate,
+            available : req.body.available,
+            updatedAt : req.body.updatedAt,
+            updatedBy : req.body.updatedBy,
+        }, 
         {new : true})
     .then((updatedProduct) => {
         res.status(200).json(updatedProduct);
