@@ -14,8 +14,6 @@ function createCategory(req, res) {
   
     newCategory.save()
     .then((savedCategory) => {
-
-        //send back the created Category
         res.json(savedCategory);
             
     }, (err) => {
@@ -40,8 +38,11 @@ function readCategory(req, res) {
 
     let Category = require("../models/category");
 
-    Category.findById({_id : req.params.id})
-    .then((category) => {
+    Category.findById(
+        {
+            _id : req.params.id
+        }
+    ).then((category) => {
         res.status(200).json(category);
     }, (err) => {
         res.status(500).json(err);
@@ -52,11 +53,20 @@ function updateCategory(req, res) {
 
     let Category = require("../models/category");
 
-    Category.findByIdAndUpdate({_id: req.params.id}, 
-        {title : req.body.title, 
-        description : req.body.description}, 
-        {new : true})
-    .then((updatedCategory) => {
+    Category.findByIdAndUpdate(
+        {
+            _id: req.params.id
+        }, 
+        {
+            title: req.body.title,
+            description : req.body.description,
+            available : req.body.available,
+            updatedAt : Date.now
+        }, 
+        {
+            new : true
+        }
+    ).then((updatedCategory) => {
         res.status(200).json(updatedCategory);
     }, (err) => {
         res.status(500).json(err);
@@ -67,8 +77,11 @@ function deleteCategory(req, res) {
 
     let Category = require("../models/category");
 
-    Category.findOneAndRemove({_id : req.params.id})
-    .then((deletedCategory) => {
+    Category.findOneAndRemove(
+        {
+            _id : req.params.id
+        }
+    ).then((deletedCategory) => {
         res.status(200).json(deletedCategory);
     }, (err) => {
         res.status(500).json(err);

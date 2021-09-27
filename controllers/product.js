@@ -40,8 +40,11 @@ function readProduct(req, res) {
 
     let Product = require("../models/product");
 
-    Product.findById({_id : req.params.id})
-    .then((product) => {
+    Product.findById(
+        {
+            _id : req.params.id
+        }
+    ).then((product) => {
         res.status(200).json(product);
     }, (err) => {
         res.status(500).json(err);
@@ -62,11 +65,12 @@ function updateProduct(req, res) {
             productHeight : req.body.productHeight,
             releaseDate : req.body.releaseDate,
             available : req.body.available,
-            updatedAt : req.body.updatedAt,
-            updatedBy : req.body.updatedBy,
+            updatedAt : Date.now
         }, 
-        {new : true})
-    .then((updatedProduct) => {
+        {
+            new : true
+        }
+    ).then((updatedProduct) => {
         res.status(200).json(updatedProduct);
     }, (err) => {
         res.status(500).json(err);
@@ -77,8 +81,11 @@ function deleteProduct(req, res) {
 
     let Product = require("../models/product");
 
-    Product.findOneAndRemove({_id : req.params.id})
-    .then((deletedProduct) => {
+    Product.findOneAndRemove(
+        {
+            _id : req.params.id
+        }
+    ).then((deletedProduct) => {
         res.status(200).json(deletedProduct);
     }, (err) => {
         res.status(500).json(err);
