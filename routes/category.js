@@ -24,6 +24,12 @@ router.get("/category/:id", (req, res) => {
 
 });
 
+router.get("/category/find/products", (req, res) => {
+    
+    controller.findProduct(req, res);
+
+});
+
 //UPDATE
 router.put("/category/update/:id", (req, res) => {
     

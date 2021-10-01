@@ -48,6 +48,11 @@ var CategorySchema = new Schema({
     type : String,
     default : null
   },
+
+  shops : {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'shops'
+  },
 });
 
 module.exports = mongoose.model('Category', CategorySchema);

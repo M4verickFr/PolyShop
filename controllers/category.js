@@ -4,12 +4,10 @@ function createCategory(req, res) {
         title: req.body.title,
         description : req.body.description,
         available : req.body.available,
-        createdAt : req.body.createdAt,
         createdBy : req.body.createdBy,
-        updatedAt : req.body.updatedAt,
-        updatedBy : req.body.updatedBy,
-        deletedAt : req.body.deletedAt,
-        deletedBy : req.body.deletedBy
+        
+        //Foreign Key
+        shops : req.body.shops
     });
   
     newCategory.save()
@@ -33,6 +31,22 @@ function readCategories(req, res) {
         res.status(500).json(err);
     });
  }
+
+function getProductByCategory(req, res){
+    let Product = require("../models/product");
+
+    console.log(req.headers.category);
+    Product.find(
+        {
+            categories : req.headers.category
+        }
+    ).then((product) => {
+        res.status(200).json(product);
+    }, (err) => {
+        res.status(500).json(err);
+    });
+
+}
 
 function readCategory(req, res) {
 
@@ -61,6 +75,7 @@ function updateCategory(req, res) {
             title: req.body.title,
             description : req.body.description,
             available : req.body.available,
+            shop : req.body.shop,
             updatedAt : Date.now
         }, 
         {
@@ -91,5 +106,6 @@ function deleteCategory(req, res) {
 module.exports.create = createCategory;
 module.exports.reads = readCategories;
 module.exports.read = readCategory;
+module.exports.findProduct = getProductByCategory;
 module.exports.delete = deleteCategory;
 module.exports.update = updateCategory;

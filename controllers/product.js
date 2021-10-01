@@ -4,12 +4,17 @@ function createProduct(req, res) {
         title: req.body.title,
         description : req.body.description,
         price : req.body.price,
+
+        // Foreign key
+        categories : req.body.categories,
+        shops : req.body.shops,
+
         productWidth : req.body.productWidth,
         productDepth : req.body.productDepth,
         productHeight : req.body.productHeight,
         releaseDate : req.body.releaseDate,
         available : req.body.available,
-        createdBy : req.body.createdBy,
+        createdBy : req.body.createdBy
     });
   
     newProduct.save()
@@ -65,6 +70,11 @@ function updateProduct(req, res) {
             productHeight : req.body.productHeight,
             releaseDate : req.body.releaseDate,
             available : req.body.available,
+
+            // Foreign Key
+            category : req.body.category,
+            shop : req.body.shop,
+
             updatedAt : Date.now
         }, 
         {

@@ -14,6 +14,16 @@ var ProductSchema = new Schema({
     default : "ProductDescription"
   },
 
+  categories : {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : "categories"
+  },
+
+  shops : {
+    type : mongoose.Schema.Types.ObjectId,
+    ref : 'shops'
+  },
+
   price : {
     type : Number,
     default : 0.0
