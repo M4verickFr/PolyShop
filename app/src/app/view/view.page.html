@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/"><ion-icon slot="icon-only" name="arrow-round-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>
+      <span *ngIf="todo" ngDefaultControl [(ngModel)]="title">{{todo.title}}</span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()"> <ion-icon slot="icon-only" name="save"></ion-icon></ion-button>
+      <ion-button (click)="delete()"> <ion-icon slot="icon-only" name="trash"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+  <ion-item>
+    <ion-input value="{{todo.title}}" rows="10" *ngIf="todo" ngDefaultControl [(ngModel)]="title"></ion-input>
+  </ion-item>
+
+
+  <ion-item>
+    <ion-textarea value="{{todo.description}}" rows="10" *ngIf="todo" ngDefaultControl [(ngModel)]="description"></ion-textarea>
+  </ion-item>
+
+</ion-content>
