@@ -46,5 +46,11 @@ router.get("/shop/:id", (req, res) => {
 
 });
 
+router.get("/shop/:id/categories", (req, res) => {
+    
+    controller.findCategories(req, res);
+
+});
+
 
 module.exports = router;

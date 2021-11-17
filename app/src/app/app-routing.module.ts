@@ -3,22 +3,30 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'shops',
     pathMatch: 'full'
   },
   {
-    path: 'add',
-    loadChildren: () => import('./add/add.module').then( m => m.AddPageModule)
+    path: 'shops',
+    loadChildren: () => import('./shops/shops.module').then( m => m.ShopsPageModule)
   },
   {
-    path: 'view/:id',
-    loadChildren: () => import('./view/view.module').then( m => m.ViewPageModule)
+    path: 'shop/add',
+    loadChildren: () => import('./shop/add/add.module').then( m => m.AddPageModule)
   },
+  {
+    path: 'shop/:id',
+    loadChildren: () => import('./shop/view/view.module').then( m => m.ViewPageModule)
+  },
+  {
+    path: 'shop/:id/update',
+    loadChildren: () => import('./shop/update/update.module').then( m => m.UpdatePageModule)
+  },
+  {
+    path: 'shop/:id/add',
+    loadChildren: () => import('./category/add/add.module').then( m => m.AddPageModule)
+  }
 ];
 
 @NgModule({

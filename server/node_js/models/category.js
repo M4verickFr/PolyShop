@@ -49,9 +49,9 @@ var CategorySchema = new Schema({
     default : null
   },
 
-  shops : {
+  shop : {
     type : mongoose.Schema.Types.ObjectId,
-    ref : 'shops'
+    ref : 'shop'
   },
 });
 

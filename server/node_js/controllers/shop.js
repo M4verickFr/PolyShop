@@ -4,7 +4,7 @@ function createShop(req, res) {
         title: req.body.title,
         description : req.body.description,
         url : req.body.url,
-        createdBy : req.body.createdBy,
+        createdBy : req.body.createdBy
     });
   
     newShop.save()
@@ -43,6 +43,22 @@ function readShop(req, res) {
     });
  }
 
+ function getCategoriesByShop(req, res){
+    let Category = require("../models/category");
+
+    console.log(req.params.id);
+    Category.find(
+        {
+            shop : req.params.id
+        }
+    ).then((category) => {
+        res.status(200).json(category);
+    }, (err) => {
+        res.status(500).json(err);
+    });
+
+}
+
  function updateShop(req, res) {
 
     let Shop = require("../models/shop");
@@ -51,8 +67,7 @@ function readShop(req, res) {
         {
             title: req.body.title,
             description : req.body.description,
-            url : req.body.url,
-            updatedAt : Date.now
+            url : req.body.url
         }, 
         {
             new : true
@@ -83,5 +98,6 @@ function deleteShop(req, res) {
 module.exports.create = createShop;
 module.exports.reads = readShops;
 module.exports.read = readShop;
+module.exports.findCategories = getCategoriesByShop;
 module.exports.delete = deleteShop;
 module.exports.update = updateShop;

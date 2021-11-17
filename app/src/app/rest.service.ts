@@ -35,19 +35,9 @@ export class RestService {
     return body || { };
   }
 
-  getTodos(): Observable<any> {
+  getShops(): Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/todos";
-
-    return this.http.get(apiUrl, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-
-  }
-
-  getTodo(id:any): Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/todo/" + id;
+    const apiUrl = "http://localhost:3000/api/v1/shops";
 
     return this.http.get(apiUrl, httpOptions).pipe(
       map(this.extractData),
@@ -55,36 +45,96 @@ export class RestService {
 
   }
 
-  createTodo(data:any): Observable<any> {
+  getShop(id:any): Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/todo/";
+    const apiUrl = "http://localhost:3000/api/v1/shop/" + id;
+
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+
+  }
+
+  createShop(data:any): Observable<any> {
+
+    const apiUrl = "http://localhost:3000/api/v1/shop/create";
 
     return this.http.post(apiUrl, data, httpOptions).pipe(
       catchError(this.handleError));
 
   }
 
-  updateTodo(id:any, data:any) : Observable<any> {
+  updateShop(id:any, data:any) : Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/todo/" + id;
+    const apiUrl = "http://localhost:3000/api/v1/shop/update/" + id;
 
     return this.http.put(apiUrl, data, httpOptions).pipe(
       catchError(this.handleError));
   }
 
-  deleteTodo(id:any) : Observable<any> {
+  deleteShop(id:any) : Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/todo/" + id;
+    const apiUrl = "http://localhost:3000/api/v1/shop/delete/" + id;
 
     return this.http.delete(apiUrl, httpOptions).pipe(
       catchError(this.handleError));
   }
 
-  doneTodo(id:any) : Observable<any> {
+  // ------------------------------------------------
 
-    const apiUrl = "http://localhost:3000/api/v1/todo/" + id + "/done";
+  getCategories(): Observable<any> {
 
-    return this.http.post(apiUrl, httpOptions).pipe(
+    const apiUrl = "http://localhost:3000/api/v1/categories";
+
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+
+  }
+
+  getCategory(id:any): Observable<any> {
+
+    const apiUrl = "http://localhost:3000/api/v1/category/" + id;
+
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+
+  }
+
+  getCategoriesByShop(id:any): Observable<any> {
+
+    const apiUrl = "http://localhost:3000/api/v1/shop/" + id + "/categories";
+
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
+      catchError(this.handleError));
+
+  }
+
+
+  createCategory(data:any): Observable<any> {
+
+    const apiUrl = "http://localhost:3000/api/v1/category/create";
+
+    return this.http.post(apiUrl, data, httpOptions).pipe(
+      catchError(this.handleError));
+
+  }
+
+  updateCategory(id:any, data:any) : Observable<any> {
+
+    const apiUrl = "http://localhost:3000/api/v1/category/update/" + id;
+
+    return this.http.put(apiUrl, data, httpOptions).pipe(
+      catchError(this.handleError));
+  }
+
+  deleteCategory(id:any) : Observable<any> {
+
+    const apiUrl = "http://localhost:3000/api/v1/category/delete/" + id;
+
+    return this.http.delete(apiUrl, httpOptions).pipe(
       catchError(this.handleError));
   }
 }

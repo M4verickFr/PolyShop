@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { LoadingController } from '@ionic/angular';
-import { RestService } from '../rest.service';
+import { RestService } from '../../rest.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-view',
-  templateUrl: './view.page.html',
-  styleUrls: ['./view.page.scss'],
+  selector: 'app-update',
+  templateUrl: './update.page.html',
+  styleUrls: ['./update.page.scss'],
 })
-export class ViewPage implements OnInit {
-  todo : any;
+export class UpdatePage implements OnInit {
+  shop : any;
   api : RestService;
   id : string;
   title : string;
@@ -24,18 +24,18 @@ export class ViewPage implements OnInit {
 
   }
 
-  async getTodo(id:any) {
+  async getShop(id:any) {
     const loading = await this.loadingController.create({
       message: 'Loading'
     });
 
     await loading.present();
-    await this.api.getTodo(this.id)
+    await this.api.getShop(this.id)
       .subscribe(res => {
         console.log(res);
-        this.todo = res;
-        this.title = this.todo.title;
-        this.description = this.todo.description;
+        this.shop = res;
+        this.title = this.shop.title;
+        this.description = this.shop.description;
         loading.dismiss();
       }, err => {
         console.log(err);
@@ -44,8 +44,8 @@ export class ViewPage implements OnInit {
 
   }
 
-  async saveTodo(){
-    await this.api.updateTodo(this.todo._id, this.todo)
+  async saveShop(){
+    await this.api.updateShop(this.shop._id, this.shop)
     .subscribe(res => {
         console.log(res);
         this.router.navigate(['/']);
@@ -54,8 +54,8 @@ export class ViewPage implements OnInit {
       });
   }
 
-  async deleteTodo(){
-    await this.api.deleteTodo(this.todo._id)
+  async deleteShop(){
+    await this.api.deleteShop(this.shop._id)
     .subscribe(res => {
         console.log(res);
         this.router.navigate(['/']);
@@ -68,18 +68,18 @@ export class ViewPage implements OnInit {
 
     console.log(this.description);
     console.log(this.title);
-    console.log(this.todo._id);
+    console.log(this.shop._id);
 
-    this.todo.title = this.title;
-    this.todo.description = this.description;
+    this.shop.title = this.title;
+    this.shop.description = this.description;
 
-    this.saveTodo();
+    this.saveShop();
 
   }
 
   delete() {
 
-    this.deleteTodo();
+    this.deleteShop();
     
   }
 
@@ -88,6 +88,6 @@ export class ViewPage implements OnInit {
       this.id=params.get('id');
     });
     console.log("Current id: " + this.id);
-    this.getTodo(this.id);
+    this.getShop(this.id);
   }
 }

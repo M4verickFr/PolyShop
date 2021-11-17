@@ -7,7 +7,7 @@ function createCategory(req, res) {
         createdBy : req.body.createdBy,
         
         //Foreign Key
-        shops : req.body.shops
+        shop : req.body.shop
     });
   
     newCategory.save()

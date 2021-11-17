@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { NavController, LoadingController } from '@ionic/angular';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
-import { RestService } from '../rest.service';
+import { RestService } from '../../rest.service';
 import { ActivatedRoute, Router  } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ import { ActivatedRoute, Router  } from '@angular/router';
 })
 export class AddPage implements OnInit {
 
-  private todo : FormGroup;
+  private shop : FormGroup;
   public api : RestService;
 
   constructor(public restapi: RestService,
@@ -19,15 +19,15 @@ export class AddPage implements OnInit {
     private route: ActivatedRoute,
     public router: Router,
     private formBuilder: FormBuilder) {
-      this.todo = this.formBuilder.group({
+      this.shop = this.formBuilder.group({
             title: [''],
             description: [''],
           });
       this.api = restapi;
   }
 
-  async saveTodo(){
-    await this.api.createTodo(this.todo.value)
+  async saveShop(){
+    await this.api.createShop(this.shop.value)
     .subscribe(res => {
         this.router.navigate(['/']);
       }, (err) => {
@@ -36,13 +36,12 @@ export class AddPage implements OnInit {
   }
 
   save() {
-    console.log(this.todo.value);
-    this.saveTodo();
+    console.log(this.shop.value);
+    this.saveShop();
 
   }
 
   ngOnInit() {
-
   }
 
 }

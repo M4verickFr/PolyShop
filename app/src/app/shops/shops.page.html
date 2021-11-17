@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>shop</ion-title>
+    <ion-buttons slot="end">
+      <ion-button routerLink="/shop/add" routerDirection="forward">
+        <ion-icon slot="icon-only" name="add-circle"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngFor="let shop of shops">
+    <ion-item routerLink="/shop/{{shop._id}}" routerDirection="forward">
+      {{shop.title}}
+    </ion-item>
+  </ion-list>
+</ion-content>
