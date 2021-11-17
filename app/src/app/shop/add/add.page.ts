@@ -27,9 +27,11 @@ export class AddPage implements OnInit {
   }
 
   async saveShop(){
-    await this.api.createShop(this.shop.value)
+    await this.api.create("shop", this.shop.value)
     .subscribe(res => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/']).then(() => {
+          window.location.reload();
+        });;
       }, (err) => {
         console.log(err);
       });

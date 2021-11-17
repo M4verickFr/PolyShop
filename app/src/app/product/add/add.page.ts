@@ -11,8 +11,9 @@ import { ActivatedRoute, ParamMap, Router  } from '@angular/router';
 })
 export class AddPage implements OnInit {
   shop : any;
+  category : any;
   id : any;
-  category : FormGroup;
+  product : FormGroup;
   api : RestService;
 
   constructor(public restapi: RestService,
@@ -20,17 +21,18 @@ export class AddPage implements OnInit {
     private route: ActivatedRoute,
     public router: Router,
     private formBuilder: FormBuilder) {
-      this.category = this.formBuilder.group({
+      this.product = this.formBuilder.group({
             title: [''],
             description: [''],
+            price: [''],
           });
       this.api = restapi;
   }
 
-  async saveCategory(){
-    await this.api.create("category", this.category.value)
+  async saveProduct(){
+    await this.api.create("product", this.product.value)
     .subscribe(res => {
-        this.router.navigate(['/shop/' + this.shop._id]).then(() => {
+        this.router.navigate(['/category/' + this.category._id]).then(() => {
           window.location.reload();
         });
       }, (err) => {
@@ -39,9 +41,10 @@ export class AddPage implements OnInit {
   }
 
   save() {
-    this.category.value.shop = this.id;
-    console.log(this.category.value);
-    this.saveCategory();
+    this.product.value.shop = this.shop._id;
+    this.product.value.category = this.category._id;
+    console.log(this.product.value);
+    this.saveProduct();
   }
 
   async getShop(id:any) {
@@ -50,7 +53,7 @@ export class AddPage implements OnInit {
     });
 
     await loading.present();
-    await this.api.get("shop", this.id)
+    await this.api.get("shop", id)
       .subscribe(res => {
         console.log(res);
         this.shop = res;
@@ -62,12 +65,32 @@ export class AddPage implements OnInit {
 
   }
 
+  async getCategory(id:any) {
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+
+    await loading.present();
+    await this.api.get("category", id)
+      .subscribe(res => {
+        console.log(res);
+        this.category = res;
+        this.getShop(this.category.shop);
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      });
+
+  }
+
+
   ngOnInit() {
     this.route.paramMap.subscribe((params : ParamMap)=> {
       this.id=params.get('id');
     });
     console.log("Current id: " + this.id);
-    this.getShop(this.id);
+    this.getCategory(this.id);
   }
 
 }

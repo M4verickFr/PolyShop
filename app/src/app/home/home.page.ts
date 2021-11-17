@@ -5,11 +5,11 @@ import { RestService } from '../rest.service';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-shops',
-  templateUrl: './shops.page.html',
-  styleUrls: ['./shops.page.scss'],
+  selector: 'app-home',
+  templateUrl: './home.page.html',
+  styleUrls: ['./home.page.scss'],
 })
-export class ShopsPage {
+export class HomePage {
 
   shops : any;
   api : RestService;
@@ -27,7 +27,7 @@ export class ShopsPage {
     });
 
     await loading.present();
-    await this.api.getShops()
+    await this.api.get("shops")
       .subscribe(res => {
         console.log(res);
         this.shops = res;

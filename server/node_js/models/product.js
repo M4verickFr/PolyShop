@@ -14,14 +14,14 @@ var ProductSchema = new Schema({
     default : "ProductDescription"
   },
 
-  categories : {
+  category : {
     type : mongoose.Schema.Types.ObjectId,
-    ref : "categories"
+    ref : "category"
   },
 
-  shops : {
+  shop : {
     type : mongoose.Schema.Types.ObjectId,
-    ref : 'shops'
+    ref : 'shop'
   },
 
   price : {

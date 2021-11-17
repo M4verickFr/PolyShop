@@ -24,7 +24,7 @@ router.get("/category/:id", (req, res) => {
 
 });
 
-router.get("/category/find/products", (req, res) => {
+router.get("/category/:id/products", (req, res) => {
     
     controller.findProduct(req, res);
 

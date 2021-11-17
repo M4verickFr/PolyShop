@@ -13,7 +13,11 @@ const httpOptions = {
 })
 export class RestService {
 
-  constructor(private http: HttpClient) { }
+  private apiUrl;
+
+  constructor(private http: HttpClient) { 
+    this.apiUrl = "http://localhost:3000/api/v1/";
+  }
 
   private handleError(error: HttpErrorResponse) {
     if (error.error instanceof ErrorEvent) {
@@ -35,69 +39,41 @@ export class RestService {
     return body || { };
   }
 
-  getShops(): Observable<any> {
+  get(type: string, id: any=null): Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/shops";
+    let url = this.apiUrl + type
 
-    return this.http.get(apiUrl, httpOptions).pipe(
+    if(id) url += "/" + id;
+    
+    return this.http.get(url, httpOptions).pipe(
       map(this.extractData),
       catchError(this.handleError));
 
   }
 
-  getShop(id:any): Observable<any> {
+  create(type: string, data: any): Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/shop/" + id;
+    let url = this.apiUrl + type + "/create"
 
-    return this.http.get(apiUrl, httpOptions).pipe(
-      map(this.extractData),
+    return this.http.post(url, data, httpOptions).pipe(
       catchError(this.handleError));
 
   }
 
-  createShop(data:any): Observable<any> {
+  update(type: string, id: any, data: any): Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/shop/create";
+    let url = this.apiUrl + type + "/update/" + id
 
-    return this.http.post(apiUrl, data, httpOptions).pipe(
+    return this.http.put(url, data, httpOptions).pipe(
       catchError(this.handleError));
 
   }
 
-  updateShop(id:any, data:any) : Observable<any> {
+  delete(type: string, id: any): Observable<any> {
 
-    const apiUrl = "http://localhost:3000/api/v1/shop/update/" + id;
+    let url = this.apiUrl + type + "/delete/" + id
 
-    return this.http.put(apiUrl, data, httpOptions).pipe(
-      catchError(this.handleError));
-  }
-
-  deleteShop(id:any) : Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/shop/delete/" + id;
-
-    return this.http.delete(apiUrl, httpOptions).pipe(
-      catchError(this.handleError));
-  }
-
-  // ------------------------------------------------
-
-  getCategories(): Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/categories";
-
-    return this.http.get(apiUrl, httpOptions).pipe(
-      map(this.extractData),
-      catchError(this.handleError));
-
-  }
-
-  getCategory(id:any): Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/category/" + id;
-
-    return this.http.get(apiUrl, httpOptions).pipe(
-      map(this.extractData),
+    return this.http.delete(url, httpOptions).pipe(
       catchError(this.handleError));
 
   }
@@ -112,29 +88,13 @@ export class RestService {
 
   }
 
+  getProductsByCategory(id:any): Observable<any> {
+  
+    const apiUrl = "http://localhost:3000/api/v1/category/" + id + "/products";
 
-  createCategory(data:any): Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/category/create";
-
-    return this.http.post(apiUrl, data, httpOptions).pipe(
+    return this.http.get(apiUrl, httpOptions).pipe(
+      map(this.extractData),
       catchError(this.handleError));
 
-  }
-
-  updateCategory(id:any, data:any) : Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/category/update/" + id;
-
-    return this.http.put(apiUrl, data, httpOptions).pipe(
-      catchError(this.handleError));
-  }
-
-  deleteCategory(id:any) : Observable<any> {
-
-    const apiUrl = "http://localhost:3000/api/v1/category/delete/" + id;
-
-    return this.http.delete(apiUrl, httpOptions).pipe(
-      catchError(this.handleError));
   }
 }

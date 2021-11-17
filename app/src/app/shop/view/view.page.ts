@@ -31,7 +31,7 @@ export class ViewPage implements OnInit {
     });
 
     await loading.present();
-    await this.api.getShop(this.id)
+    await this.api.get("shop",this.id)
       .subscribe(res => {
         console.log(res);
         this.shop = res;

@@ -4,13 +4,15 @@ import { RestService } from '../../rest.service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 @Component({
-  selector: 'app-update',
-  templateUrl: './update.page.html',
-  styleUrls: ['./update.page.scss'],
+  selector: 'app-view',
+  templateUrl: './view.page.html',
+  styleUrls: ['./view.page.scss'],
 })
-export class UpdatePage implements OnInit {
-  shop : any;
+export class ViewPage implements OnInit {
   api : RestService;
+  shop : any;
+  category : any;
+  products: any;
   id : string;
   title : string;
   description : string;
@@ -30,7 +32,7 @@ export class UpdatePage implements OnInit {
     });
 
     await loading.present();
-    await this.api.get("shop", this.id)
+    await this.api.get("shop", id)
       .subscribe(res => {
         console.log(res);
         this.shop = res;
@@ -44,47 +46,43 @@ export class UpdatePage implements OnInit {
 
   }
 
-  async saveShop(){
-    await this.api.update("shop", this.shop._id, this.shop)
-    .subscribe(res => {
+  async getCategory(id:any) {
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+
+    await loading.present();
+    await this.api.get("category", id)
+      .subscribe(res => {
         console.log(res);
-        this.router.navigate(['/shop/' + this.shop._id]).then(() => {
-          window.location.reload();
-        });
-      }, (err) => {
+        this.category = res;
+        this.title = this.category.title;
+        this.description = this.category.description;
+        this.getShop(this.category.shop);
+        loading.dismiss();
+      }, err => {
         console.log(err);
+        loading.dismiss();
       });
-  }
-
-  async deleteShop(){
-    await this.api.delete("shop", this.shop._id)
-    .subscribe(res => {
-        console.log(res);
-        this.router.navigate(['/']).then(() => {
-          window.location.reload();
-        });
-      }, (err) => {
-        console.log(err);
-      });
-  }
-
-  save() {
-
-    console.log(this.description);
-    console.log(this.title);
-    console.log(this.shop._id);
-
-    this.shop.title = this.title;
-    this.shop.description = this.description;
-
-    this.saveShop();
-
-  }
-
-  delete() {
-
-    this.deleteShop();
     
+  }
+
+  async getProducts(id:any) {
+    const loading = await this.loadingController.create({
+      message: 'Loading'
+    });
+
+    await loading.present();
+    await this.api.getProductsByCategory(id)
+      .subscribe(res => {
+        console.log(res);
+        this.products = res;
+        loading.dismiss();
+      }, err => {
+        console.log(err);
+        loading.dismiss();
+      });
+
   }
 
   ngOnInit() {
@@ -92,6 +90,7 @@ export class UpdatePage implements OnInit {
       this.id=params.get('id');
     });
     console.log("Current id: " + this.id);
-    this.getShop(this.id);
+    this.getCategory(this.id);
+    this.getProducts(this.id);
   }
 }

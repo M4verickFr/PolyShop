@@ -6,8 +6,8 @@ function createProduct(req, res) {
         price : req.body.price,
 
         // Foreign key
-        categories : req.body.categories,
-        shops : req.body.shops,
+        category : req.body.category,
+        shop : req.body.shop,
 
         productWidth : req.body.productWidth,
         productDepth : req.body.productDepth,
@@ -74,8 +74,6 @@ function updateProduct(req, res) {
             // Foreign Key
             category : req.body.category,
             shop : req.body.shop,
-
-            updatedAt : Date.now
         }, 
         {
             new : true

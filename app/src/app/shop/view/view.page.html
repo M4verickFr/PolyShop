@@ -29,8 +29,6 @@
     <ion-textarea readonly value="{{shop.description}}" rows="10" *ngIf="shop"></ion-textarea>
   </ion-item>
 
-
-
   <ion-list-header>
     <ion-label>Categories</ion-label>
     <ion-button *ngIf="shop" routerLink="/shop/{{shop._id}}/add" routerDirection="forward">
@@ -39,7 +37,7 @@
   </ion-list-header>
 
   <ion-list *ngFor="let category of categories">
-    <ion-item routerLink="/shop/{{shop._id}}/{{category._id}}" routerDirection="forward">
+    <ion-item routerLink="/category/{{category._id}}" routerDirection="forward">
       {{category.title}}
     </ion-item>
   </ion-list>

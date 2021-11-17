@@ -35,10 +35,10 @@ function readCategories(req, res) {
 function getProductByCategory(req, res){
     let Product = require("../models/product");
 
-    console.log(req.headers.category);
+    console.log(req.params.id);
     Product.find(
         {
-            categories : req.headers.category
+            category : req.params.id
         }
     ).then((product) => {
         res.status(200).json(product);
@@ -75,8 +75,7 @@ function updateCategory(req, res) {
             title: req.body.title,
             description : req.body.description,
             available : req.body.available,
-            shop : req.body.shop,
-            updatedAt : Date.now
+            shop : req.body.shop
         }, 
         {
             new : true

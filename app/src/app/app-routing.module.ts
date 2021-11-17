@@ -4,12 +4,12 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'shops',
+    redirectTo: 'home',
     pathMatch: 'full'
   },
   {
-    path: 'shops',
-    loadChildren: () => import('./shops/shops.module').then( m => m.ShopsPageModule)
+    path: 'home',
+    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
   },
   {
     path: 'shop/add',
@@ -20,13 +20,33 @@ const routes: Routes = [
     loadChildren: () => import('./shop/view/view.module').then( m => m.ViewPageModule)
   },
   {
+    path: 'shop/:id/add',
+    loadChildren: () => import('./category/add/add.module').then( m => m.AddPageModule)
+  },
+  {
     path: 'shop/:id/update',
     loadChildren: () => import('./shop/update/update.module').then( m => m.UpdatePageModule)
   },
   {
-    path: 'shop/:id/add',
-    loadChildren: () => import('./category/add/add.module').then( m => m.AddPageModule)
-  }
+    path: 'category/:id',
+    loadChildren: () => import('./category/view/view.module').then( m => m.ViewPageModule)
+  },
+  {
+    path: 'category/:id/add',
+    loadChildren: () => import('./product/add/add.module').then( m => m.AddPageModule)
+  },
+  {
+    path: 'category/:id/update',
+    loadChildren: () => import('./category/update/update.module').then( m => m.UpdatePageModule)
+  },
+  {
+    path: 'product/:id',
+    loadChildren: () => import('./product/view/view.module').then( m => m.ViewPageModule)
+  },
+  {
+    path: 'product/:id/update',
+    loadChildren: () => import('./product/update/update.module').then( m => m.UpdatePageModule)
+  },
 ];
 
 @NgModule({

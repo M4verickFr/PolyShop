@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button *ngIf="product" routerLink="/product/{{product._id}}"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
+    </ion-buttons>
+    <ion-title>
+      <span *ngIf="shop && category && product" ngDefaultControl [(ngModel)]="title">{{shop.title}} / {{category.title}} / {{product.title}}</span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="save()"> <ion-icon slot="icon-only" name="save"></ion-icon></ion-button>
+      <ion-button (click)="delete()"> <ion-icon slot="icon-only" name="trash"></ion-icon></ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-list-header>
+    <ion-label>Title</ion-label>
+  </ion-list-header>
+
+  <ion-item>
+    <ion-input value="{{product.title}}" rows="10" *ngIf="product" ngDefaultControl [(ngModel)]="title"></ion-input>
+  </ion-item>
+
+  <ion-list-header>
+    <ion-label>Description</ion-label>
+  </ion-list-header>
+
+  <ion-item>
+    <ion-textarea value="{{product.description}}" rows="10" *ngIf="product" ngDefaultControl [(ngModel)]="description"></ion-textarea>
+  </ion-item>
+
+  <ion-list-header>
+    <ion-label>Title</ion-label>
+  </ion-list-header>
+
+  <ion-item>
+    <ion-input type="number" value="{{product.price}}" rows="10" *ngIf="product" ngDefaultControl [(ngModel)]="price"></ion-input>
+  </ion-item>
+
+</ion-content>
