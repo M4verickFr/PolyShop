@@ -14,6 +14,11 @@ var CategorySchema = new Schema({
     default : "CategoryDescription"
   },
 
+  photo : {
+    type : String,
+    default : null
+  },
+
   available : {
     type : Boolean,
     default : true

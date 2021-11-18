@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>shops</ion-title>
+    <ion-title>Les PolyShops</ion-title>
     <ion-buttons slot="end">
       <ion-button routerLink="/shop/add" routerDirection="forward">
         <ion-icon slot="icon-only" name="add-circle"></ion-icon>
@@ -10,9 +10,18 @@
 </ion-header>
 
 <ion-content>
-  <ion-list *ngFor="let shop of shops">
-    <ion-item routerLink="/shop/{{shop._id}}" routerDirection="forward">
-      {{shop.title}}
-    </ion-item>
-  </ion-list>
+  <ion-card *ngFor="let shop of shops">
+    <ion-card-header>
+      <ion-item>
+        <ion-card-title>{{shop.title}}</ion-card-title>
+        <ion-button routerLink="/shop/{{shop._id}}" routerDirection="forward" fill="outline" slot="end">View</ion-button>
+      </ion-item>
+    </ion-card-header>
+  
+    <ion-card-content>
+      {{shop.description}}
+    </ion-card-content>
+
+  </ion-card>
+
 </ion-content>

@@ -14,11 +14,6 @@ var ShopSchema = new Schema({
     default : "ShopDescription"
   },
 
-  photo : {
-    type : String,
-    default : null
-  },
-
   url : {
     type : String,
     default : null

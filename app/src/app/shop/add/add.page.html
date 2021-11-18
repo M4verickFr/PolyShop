@@ -4,7 +4,7 @@
       <ion-button routerLink="/"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>
-      Add a shop
+      Add a PolyShop
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="save()"> <ion-icon slot="icon-only" name="save"></ion-icon></ion-button>
@@ -16,16 +16,12 @@
 <ion-content>
   <form [formGroup]="shop">
     <ion-item>
-      <ion-label>Title</ion-label>
+      <ion-label position="floating">Title</ion-label>
+      <ion-input formControlName="title" type="text"></ion-input>
     </ion-item>
     <ion-item>
-      <ion-input type="text" formControlName="title"></ion-input>
-    </ion-item>
-    <ion-item>
-      <ion-label>Description</ion-label>
-    </ion-item>
-    <ion-item>
+      <ion-label position="floating">Description</ion-label>
       <ion-textarea formControlName="description" rows="10"></ion-textarea>
     </ion-item>
-</form>
+  </form>
 </ion-content>

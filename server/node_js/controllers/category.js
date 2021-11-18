@@ -5,6 +5,7 @@ function createCategory(req, res) {
         description : req.body.description,
         available : req.body.available,
         createdBy : req.body.createdBy,
+        photo: req.body.photo,
         
         //Foreign Key
         shop : req.body.shop
@@ -75,7 +76,8 @@ function updateCategory(req, res) {
             title: req.body.title,
             description : req.body.description,
             available : req.body.available,
-            shop : req.body.shop
+            shop : req.body.shop,
+            photo: req.body.photo
         }, 
         {
             new : true

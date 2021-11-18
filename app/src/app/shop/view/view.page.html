@@ -13,33 +13,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-list-header>
-    <ion-label>Title</ion-label>
-  </ion-list-header>
-  
-  <ion-item>
-    <ion-input readonly value="{{shop.title}}" rows="10" *ngIf="shop"></ion-input>
+
+  <ion-toolbar>
+    <ion-title>Presentation</ion-title>
+  </ion-toolbar>
+
+  <ion-item *ngIf="shop">
+    {{shop.description}}
   </ion-item>
 
-  <ion-list-header>
-    <ion-label>Description</ion-label>
-  </ion-list-header>
+  <ion-toolbar>
+    <ion-title>Category</ion-title>
+  </ion-toolbar>
 
-  <ion-item >
-    <ion-textarea readonly value="{{shop.description}}" rows="10" *ngIf="shop"></ion-textarea>
-  </ion-item>
+  <ion-card *ngFor="let category of categories" routerLink="/category/{{category._id}}" routerDirection="forward">
+    <ion-img [src]="getRandomImage(category)"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{category.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{category.description}}
+    </ion-card-content>
+  </ion-card>
 
-  <ion-list-header>
-    <ion-label>Categories</ion-label>
-    <ion-button *ngIf="shop" routerLink="/shop/{{shop._id}}/add" routerDirection="forward">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-    </ion-button>
-  </ion-list-header>
-
-  <ion-list *ngFor="let category of categories">
-    <ion-item routerLink="/category/{{category._id}}" routerDirection="forward">
-      {{category.title}}
-    </ion-item>
-  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button *ngIf="shop" routerLink="/shop/{{shop._id}}/add" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>

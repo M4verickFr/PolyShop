@@ -22,12 +22,13 @@ export class AddPage implements OnInit {
     private formBuilder: FormBuilder) {
       this.category = this.formBuilder.group({
             title: [''],
-            description: [''],
+            description: ['']
           });
       this.api = restapi;
   }
 
   async saveCategory(){
+    
     await this.api.create("category", this.category.value)
     .subscribe(res => {
         this.router.navigate(['/shop/' + this.shop._id]).then(() => {

@@ -8,6 +8,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
   templateUrl: './view.page.html',
   styleUrls: ['./view.page.scss'],
 })
+
 export class ViewPage implements OnInit {
   api : RestService;
   shop : any;
@@ -45,7 +46,7 @@ export class ViewPage implements OnInit {
       });
 
   }
-
+  
   async getCategory(id:any) {
     const loading = await this.loadingController.create({
       message: 'Loading'
@@ -83,6 +84,10 @@ export class ViewPage implements OnInit {
         loading.dismiss();
       });
 
+  }
+
+  getRandomImage(category) {
+    return "https://source.unsplash.com/random/250x250?"+category.title
   }
 
   ngOnInit() {

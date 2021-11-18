@@ -63,6 +63,10 @@ export class ViewPage implements OnInit {
 
   }
 
+  getRandomImage(category) {
+    return "https://source.unsplash.com/random/250x250?"+category.title
+  }
+
   ngOnInit() {
     this.route.paramMap.subscribe((params : ParamMap)=> {
       this.id=params.get('id');

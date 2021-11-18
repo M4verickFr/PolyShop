@@ -4,7 +4,7 @@
       <ion-button *ngIf="shop" routerLink="/shop/{{shop._id}}"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>
-      <span *ngIf="shop && category">{{shop.title}} / {{category.title}}</span>
+      <span *ngIf="shop">{{shop.title}}</span>
     </ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="category" routerLink="/category/{{category._id}}/update" routerDirection="forward"><ion-icon slot="icon-only" name="pencil"></ion-icon></ion-button>
@@ -13,35 +13,33 @@
 </ion-header>
 
 <ion-content>
-  <ion-list-header>
-    <ion-label>Title</ion-label>
-  </ion-list-header>
-  
-  <ion-item>
-    <ion-input readonly value="{{category.title}}" rows="10" *ngIf="category"></ion-input>
+
+  <ion-toolbar *ngIf="category" >
+    <ion-title>{{category.title}}</ion-title>
+  </ion-toolbar>
+
+  <ion-item *ngIf="category">
+    {{category.description}}
   </ion-item>
 
-  <ion-list-header>
-    <ion-label>Description</ion-label>
-  </ion-list-header>
+  <ion-toolbar>
+    <ion-title>Products</ion-title>
+  </ion-toolbar>
 
-  <ion-item >
-    <ion-textarea readonly value="{{category.description}}" rows="10" *ngIf="category"></ion-textarea>
-  </ion-item>
+  <ion-card *ngFor="let product of products" routerLink="/product/{{product._id}}" routerDirection="forward">
+    <ion-img [src]="getRandomImage(product)"></ion-img>
+    <ion-card-header>
+      <ion-card-title>{{product.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      {{product.description}}
+    </ion-card-content>
+  </ion-card>
 
-
-
-  <ion-list-header>
-    <ion-label>Products</ion-label>
-    <ion-button *ngIf="category" routerLink="/category/{{category._id}}/add" routerDirection="forward">
-      <ion-icon slot="icon-only" name="add-circle"></ion-icon>
-    </ion-button>
-  </ion-list-header>
-
-  <ion-list *ngFor="let product of products">
-    <ion-item routerLink="/product/{{product._id}}" routerDirection="forward">
-      {{product.title}}
-    </ion-item>
-  </ion-list>
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button *ngIf="category" routerLink="/category/{{category._id}}/add" routerDirection="forward">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 
 </ion-content>
