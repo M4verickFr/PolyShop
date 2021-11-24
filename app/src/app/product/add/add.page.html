@@ -1,10 +1,10 @@
 <ion-header>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-button routerLink="/" routerLinkActive="on"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
+      <ion-button *ngIf="category" routerLink="/category/{{category._id}}" routerLinkActive="on"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title *ngIf="shop && category" >
-      Add a category to {{shop.title}} / {{category.title}}
+      Ajouter un produit à {{shop.title}} / {{category.title}}
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="save()"> <ion-icon slot="icon-only" name="save"></ion-icon></ion-button>
@@ -17,7 +17,7 @@
 
   <form [formGroup]="product">
     <ion-item>
-      <ion-label position="floating">Title</ion-label>
+      <ion-label position="floating">Titre</ion-label>
       <ion-input formControlName="title" type="text"></ion-input>
     </ion-item>
     <ion-item>
@@ -25,7 +25,7 @@
       <ion-textarea formControlName="description" rows="10"></ion-textarea>
     </ion-item>
     <ion-item>
-      <ion-label position="floating">Price</ion-label>
+      <ion-label position="floating">Prix</ion-label>
       <ion-input formControlName="price" type="number"></ion-input>
     </ion-item>
   </form>

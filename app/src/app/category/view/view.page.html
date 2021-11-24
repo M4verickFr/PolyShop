@@ -4,7 +4,7 @@
       <ion-button *ngIf="shop" routerLink="/shop/{{shop._id}}"><ion-icon slot="icon-only" name="arrow-back"></ion-icon></ion-button>
     </ion-buttons>
     <ion-title>
-      <span *ngIf="shop">{{shop.title}}</span>
+      <span *ngIf="shop && category">{{shop.title}} / {{category.title}}</span>
     </ion-title>
     <ion-buttons slot="end">
       <ion-button *ngIf="category" routerLink="/category/{{category._id}}/update" routerDirection="forward"><ion-icon slot="icon-only" name="pencil"></ion-icon></ion-button>
@@ -23,7 +23,7 @@
   </ion-item>
 
   <ion-toolbar>
-    <ion-title>Products</ion-title>
+    <ion-title>Produits</ion-title>
   </ion-toolbar>
 
   <ion-card *ngFor="let product of products" routerLink="/product/{{product._id}}" routerDirection="forward">
