@@ -86,8 +86,8 @@ export class ViewPage implements OnInit {
 
   }
 
-  getRandomImage(category) {
-    return "https://source.unsplash.com/random/250x250?"+category.title
+  getRandomImage(product) {
+    return "https://source.unsplash.com/random/250x250?"+product.title
   }
 
   ngOnInit() {
