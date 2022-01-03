@@ -27,6 +27,9 @@ const mongoose = require('mongoose');
 //Create an application 
 const app = express();
 
+//Create port
+const PORT = process.env.PORT || 3000;
+
 //Allors cors
 const cors = require("cors");
 app.use(cors());
@@ -95,8 +98,8 @@ app.use('/api/v1/', productRoutes);
 //use the 404 middleware
 app.use(http404.notFound);
 
-//Listen on the port 3000
-app.listen(3000, () => {
+//Listen on the port
+app.listen(PORT, () => {
     //Add info to the loggers
     infoLogger.info('Server is running on port: ' + 3000);
 
